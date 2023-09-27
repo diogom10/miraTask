@@ -4,11 +4,11 @@ import {useGlobalSelector} from '../contexts/GlobalContext';
 import {TaskView} from '../components/TaskView';
 
 export const History = () => {
-  const currentTasks = useGlobalSelector(state => state.context.currentTasks);
+  const completedTasks = useGlobalSelector(state => state.context.completedTasks);
 
   return (
     <FlatList
-      data={currentTasks?.filter(a => a?.completed)}
+      data={completedTasks}
       keyExtractor={item => item.id}
       renderItem={({item}) => <TaskView task={item} />}
     />

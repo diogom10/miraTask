@@ -15,7 +15,7 @@ export const TasksList = () => {
 
   return (
     <FlatList
-      data={currentTasks?.filter(a => !a?.completed)}
+      data={currentTasks}
       keyExtractor={item => item.id}
       renderItem={({item}) => (
         <TaskView onPressCard={() => navigateToDetail(item)} task={item} />

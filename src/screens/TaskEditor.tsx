@@ -14,9 +14,6 @@ export const TaskEditor = ({navigation}) => {
 
   const route = useRoute<RouteProp<Record<string, ITaskViewProps>, string>>();
 
-  console.log('currentTask', currentTask);
-  console.log('route', route?.params?.task);
-
   useEffect(() => {
     handleTask(route?.params?.task);
   }, []);

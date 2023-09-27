@@ -3,7 +3,7 @@ import {createActorContext} from '@xstate/react';
 import {globalController} from '../controllers/globalController';
 import {PropsWithChildren} from 'react';
 import {useNavigation} from '@react-navigation/native';
-import {mockData} from '../models/Task';
+import {mockData, Task} from '../models/Task';
 
 const GlobalStateContext = createActorContext(globalController);
 const useGlobalActor = GlobalStateContext.useActor;
@@ -16,8 +16,8 @@ const GlobalStateProvider = (props: PropsWithChildren) => {
     <GlobalStateContext.Provider
       machine={globalController.withContext({
         navigationController: navigation,
-        currentTasks: mockData,
-        completedTasks: [] as any,
+        currentTasks: mockData?.filter(a => !a?.completed) as [Task],
+        completedTasks: mockData?.filter(a => a?.completed) as [Task],
       })}>
       {props.children}
     </GlobalStateContext.Provider>
