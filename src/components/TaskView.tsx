@@ -1,15 +1,19 @@
 import React from 'react';
 import {Task} from '../models/Task';
-import {View, Text, StyleSheet} from 'react-native';
+import {View, Text, StyleSheet, TouchableOpacity} from 'react-native';
 
-export const TaskView = ({task}: {task: Task}) => (
-  <View style={styles.container}>
+interface ITaskViewProps {
+  task: Task;
+  onPressCard?: () => void;
+}
+export const TaskView = ({task, onPressCard}: ITaskViewProps) => (
+  <TouchableOpacity style={styles.container} onPress={onPressCard}>
     <View style={styles.mainSection}>
       <Text style={styles.title}>{task?.title}</Text>
       <Text style={styles.check}>{task?.completed ? '✅' : '▢'}</Text>
     </View>
     <Text>{task?.description}</Text>
-  </View>
+  </TouchableOpacity>
 );
 
 const styles = StyleSheet.create({

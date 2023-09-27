@@ -10,6 +10,8 @@ import {useGlobalActorRef} from '../contexts/GlobalContext';
 
 const Tab = createBottomTabNavigator();
 
+const DEFAULT_TASK = {description: '', id: '', title: '', completed: false};
+
 const Tabs = () => (
   <Tab.Navigator
     screenOptions={{headerShown: false}}
@@ -37,7 +39,17 @@ const Tabs = () => (
 const AddNewTask = () => {
   const {send} = useGlobalActorRef();
 
-  return <Button title="Add new task" onPress={() => send('SHOW_EDITOR')} />;
+  return (
+    <Button
+      title="Add new task"
+      onPress={() =>
+        send({
+          type: 'SHOW_EDITOR',
+          data: DEFAULT_TASK,
+        })
+      }
+    />
+  );
 };
 
 const RootStack = createNativeStackNavigator<RootStackParamList>();
@@ -51,11 +63,11 @@ export const MainNavigation = () => (
       screenOptions={{
         headerRight: AddNewTask,
       }}>
-      <RootStack.Screen name="Tabs" component={Tabs} />
+      <RootStack.Screen name="Tabs" component={Tabs}/>
     </RootStack.Group>
 
     <RootStack.Group screenOptions={{presentation: 'modal'}}>
-      <Tab.Screen name="TaskEditor" component={TaskEditor} />
+      <Tab.Screen name="TaskEditor" component={TaskEditor}/>
     </RootStack.Group>
   </RootStack.Navigator>
 );

@@ -1,21 +1,44 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import {View, TextInput, StyleSheet, Button} from 'react-native';
 import {useGlobalActorRef, useGlobalSelector} from '../contexts/GlobalContext';
+import {Task} from '../models/Task';
+import {RouteProp, useRoute} from '@react-navigation/native';
 
-export const TaskEditor = () => {
+interface ITaskViewProps {
+  task?: Task;
+}
+
+export const TaskEditor = ({navigation}) => {
   const {send} = useGlobalActorRef();
   const currentTask = useGlobalSelector(state => state.context.currentTask);
+
+  const route = useRoute<RouteProp<Record<string, ITaskViewProps>, string>>();
+
+  console.log('currentTask', currentTask);
+  console.log('route', route?.params?.task);
+
+  useEffect(() => {
+    handleTask(route?.params?.task);
+  }, []);
 
   useEffect(() => {
     return () => send('CANCEL');
   }, [send]);
 
+  const handleTask = (task: Task | undefined) =>
+    send({type: 'EDIT', data: {...task}});
+
   const handleEditTitle = (text: string) =>
     send({type: 'EDIT', data: {title: text}});
+
   const handleEditDescription = (text: string) =>
     send({type: 'EDIT', data: {description: text}});
 
-  const handleSave = () => send({type: 'SAVE', taskID: undefined});
+  const handleSave = () => {
+    send({type: 'SAVE', taskID: currentTask?.id});
+    navigation.goBack();
+  };
+
   const handleCancel = () => send({type: 'CANCEL'});
 
   return (

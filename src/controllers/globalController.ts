@@ -13,15 +13,17 @@ type GlobalContext = {
 };
 
 type GlobalEvents =
-  | {type: 'SHOW_EDITOR'}
+  | {type: 'SHOW_EDITOR'; data: Partial<Task>}
   | {type: 'SAVE'; taskID?: string}
   | {type: 'CANCEL'}
   | {type: 'EDIT'; data: Partial<Task>};
 
 const actions: MachineOptions<GlobalContext, GlobalEvents>['actions'] = {
-
-  openTaskEditor: (ctx, _) =>
-    ctx.navigationController.navigate('TaskEditor' as any),
+  openTaskEditor: (ctx, e) => {
+    ctx.navigationController.navigate('TaskEditor', {
+      task: e.data,
+    });
+  },
   editTask: assign((ctx, e) => {
     if (e.type !== 'EDIT') {
       return {};
@@ -51,8 +53,14 @@ const actions: MachineOptions<GlobalContext, GlobalEvents>['actions'] = {
         currentTask: undefined,
       };
     }
-    // Add code here...
-    return {};
+    let tasks = [...ctx.currentTasks];
+    const index = tasks.findIndex(a => a?.id === e?.taskID);
+    // @ts-ignore
+    tasks[index] = ctx.currentTask;
+    return {
+      currentTasks: tasks as [Task],
+      currentTask: undefined,
+    };
   }),
   dismissTaskEditor: (ctx, _) =>
     ctx.navigationController.canGoBack() && ctx.navigationController.goBack(),
