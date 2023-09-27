@@ -9,7 +9,9 @@ interface ITaskViewProps {
 export const TaskView = ({task, onPressCard}: ITaskViewProps) => (
   <TouchableOpacity style={styles.container} onPress={onPressCard}>
     <View style={styles.mainSection}>
-      <Text style={styles.title}>{task?.title}</Text>
+      <Text style={styles.title} ellipsizeMode="tail" numberOfLines={2}>
+        {task?.title}
+      </Text>
       <Text style={styles.check}>{task?.completed ? '✅' : '▢'}</Text>
     </View>
     <Text>{task?.description}</Text>
@@ -28,13 +30,18 @@ const styles = StyleSheet.create({
   mainSection: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    padding: 4,
+    alignItems: 'flex-start',
+    height: 40,
   },
   title: {
     fontSize: 16,
     fontWeight: 'bold',
+    width: '92%',
   },
   check: {
     fontSize: 24,
+    minHeight: 20,
+    width: '8%',
+    textAlign: 'center',
   },
 });

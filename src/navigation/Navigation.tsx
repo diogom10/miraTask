@@ -63,11 +63,11 @@ export const MainNavigation = () => (
       screenOptions={{
         headerRight: AddNewTask,
       }}>
-      <RootStack.Screen name="Tabs" component={Tabs}/>
+      <RootStack.Screen name="Tabs" component={Tabs} />
     </RootStack.Group>
 
     <RootStack.Group screenOptions={{presentation: 'modal'}}>
-      <Tab.Screen name="TaskEditor" component={TaskEditor}/>
+      <Tab.Screen name="TaskEditor" component={TaskEditor} />
     </RootStack.Group>
   </RootStack.Navigator>
 );
