@@ -4,6 +4,7 @@ import {useGlobalSelector} from '../contexts/GlobalContext';
 import {TaskView} from '../components/TaskView';
 import {Task} from '../models/Task';
 import {TaskLoad} from '../components/TaskLoad';
+import {TaskEmpty} from '../components/TaskEmpty';
 
 export const History = () => {
   const completedTasks = useGlobalSelector(
@@ -14,16 +15,18 @@ export const History = () => {
   const [tasks, setTasks] = useState<Task[]>([]);
 
   useEffect(() => {
+    setIsLoading(true);
+    setTasks([]);
     setTimeout(() => {
       setIsLoading(false);
       setTasks(completedTasks);
-    }, 2000);
-  }, []);
+    }, 1000);
+  }, [completedTasks]);
 
   const renderLoadState = () => <TaskLoad quantity={12} />;
 
   const renderEmptyState = () => {
-    return null;
+    return <TaskEmpty title={'You don`t have any completed task'} />;
   };
 
   return (

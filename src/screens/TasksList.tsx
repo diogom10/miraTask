@@ -4,20 +4,26 @@ import {useGlobalActorRef, useGlobalSelector} from '../contexts/GlobalContext';
 import {TaskView} from '../components/TaskView';
 import {Task} from '../models/Task';
 import {TaskLoad} from '../components/TaskLoad';
+import {TaskEmpty} from '../components/TaskEmpty';
+import {DEFAULT_TASK} from '../navigation/Navigation';
 
 export const TasksList = () => {
   const {send} = useGlobalActorRef();
   const {currentTasks} = useGlobalSelector(state => state.context);
 
-  const [isLoading, setIsLoading] = useState<Boolean>(true);
+  const [isLoading, setIsLoading] = useState<Boolean>(false);
   const [tasks, setTasks] = useState<Task[]>([]);
 
   useEffect(() => {
+    setIsLoading(true);
+    setTasks([]);
     setTimeout(() => {
       setIsLoading(false);
       setTasks(currentTasks);
-    }, 2000);
-  }, []);
+    }, 1000);
+  }, [currentTasks]);
+
+
 
   const navigateToDetail = (task: Task) => {
     send({type: 'SHOW_EDITOR', data: {...task}});
@@ -25,7 +31,13 @@ export const TasksList = () => {
   const renderLoadState = () => <TaskLoad quantity={12} />;
 
   const renderEmptyState = () => {
-    return null;
+    return (
+      <TaskEmpty
+        title={'You don`t have any task'}
+        actionTitle={'Try add a new task'}
+        action={() => navigateToDetail(DEFAULT_TASK)}
+      />
+    );
   };
 
   return (

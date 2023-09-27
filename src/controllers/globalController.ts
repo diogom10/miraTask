@@ -54,7 +54,7 @@ const actions: MachineOptions<GlobalContext, GlobalEvents>['actions'] = {
         currentTask: undefined,
       };
     }
-    let tasks = [...ctx.currentTasks];
+    let tasks = ctx.currentTasks;
     const index = tasks.findIndex(a => a?.id === e?.taskID);
     // @ts-ignore
     tasks[index] = ctx.currentTask;
@@ -69,7 +69,9 @@ const actions: MachineOptions<GlobalContext, GlobalEvents>['actions'] = {
     if (e.type !== 'DELETE') {
       return {};
     }
-    let tasks = [...ctx.currentTasks];
+    const tasks = [...ctx.currentTasks];
+    console.log('ctx>>>>',ctx)
+    console.log('e>>>>',e)
     return {
       currentTasks: tasks?.filter(a => a?.id !== e?.taskID) as [Task],
       currentTask: undefined,

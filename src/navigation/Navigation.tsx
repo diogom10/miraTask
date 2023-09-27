@@ -10,7 +10,7 @@ import {useGlobalActorRef} from '../contexts/GlobalContext';
 
 const Tab = createBottomTabNavigator();
 
-const DEFAULT_TASK = {description: '', id: '', title: '', completed: false};
+export const DEFAULT_TASK = {description: '', id: '', title: '', completed: false};
 
 const Tabs = () => (
   <Tab.Navigator
