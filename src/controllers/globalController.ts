@@ -16,7 +16,8 @@ type GlobalEvents =
   | {type: 'SHOW_EDITOR'; data: Partial<Task>}
   | {type: 'SAVE'; taskID?: string}
   | {type: 'CANCEL'}
-  | {type: 'EDIT'; data: Partial<Task>};
+  | {type: 'EDIT'; data: Partial<Task>}
+  | {type: 'DELETE'; taskID?: string};
 
 const actions: MachineOptions<GlobalContext, GlobalEvents>['actions'] = {
   openTaskEditor: (ctx, e) => {
@@ -64,6 +65,16 @@ const actions: MachineOptions<GlobalContext, GlobalEvents>['actions'] = {
   }),
   dismissTaskEditor: (ctx, _) =>
     ctx.navigationController.canGoBack() && ctx.navigationController.goBack(),
+  deleteTask: assign((ctx, e) => {
+    if (e.type !== 'DELETE') {
+      return {};
+    }
+    let tasks = [...ctx.currentTasks];
+    return {
+      currentTasks: tasks?.filter(a => a?.id !== e?.taskID) as [Task],
+      currentTask: undefined,
+    };
+  }),
 };
 
 export const globalController = createMachine(
@@ -95,6 +106,10 @@ export const globalController = createMachine(
           CANCEL: {
             target: 'idle',
             actions: 'dismissTaskEditor',
+          },
+          DELETE: {
+            target: 'idle',
+            actions: 'deleteTask',
           },
         },
       },

@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect} from 'react';
 import {View, TextInput, StyleSheet, Button} from 'react-native';
 import {useGlobalActorRef, useGlobalSelector} from '../contexts/GlobalContext';
 import {Task} from '../models/Task';
@@ -41,6 +41,11 @@ export const TaskEditor = ({navigation}) => {
 
   const handleCancel = () => send({type: 'CANCEL'});
 
+  const handleDelete = () => {
+    send({type: 'DELETE', taskID: currentTask?.id});
+    navigation.goBack();
+  };
+
   return (
     <View style={styles.container}>
       <TextInput
@@ -59,6 +64,7 @@ export const TaskEditor = ({navigation}) => {
       <View>
         <Button color="blue" title="Save" onPress={handleSave} />
         <Button title="Cancel" onPress={handleCancel} />
+        <Button color="red" title="Delete" onPress={handleDelete} />
       </View>
     </View>
   );
