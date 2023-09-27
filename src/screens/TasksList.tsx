@@ -8,7 +8,7 @@ export const TasksList = () => {
 
   return (
     <FlatList
-      data={currentTasks}
+      data={currentTasks?.filter(a => !a?.completed)}
       keyExtractor={item => item.id}
       renderItem={({item}) => <TaskView task={item} />}
     />
