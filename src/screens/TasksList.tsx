@@ -6,6 +6,7 @@ import {Task} from '../models/Task';
 import {TaskLoad} from '../components/TaskLoad';
 import {TaskEmpty} from '../components/TaskEmpty';
 import {DEFAULT_TASK} from '../navigation/Navigation';
+import ActionSheet from 'react-native-action-sheet';
 
 export const TasksList = () => {
   const {send} = useGlobalActorRef();
@@ -23,8 +24,36 @@ export const TasksList = () => {
     }, 1000);
   }, [currentTasks]);
 
+  const handleDelete = (taskID: string) => {
+    send({type: 'DELETE', taskID: taskID});
+  };
 
+  const handleCompleted = (taskID: string) => {
+    send({type: 'UPDATE', taskID: taskID});
+  };
 
+  const showAlert = (task: Task) => {
+    let options = ['Mark task as completed', 'Delete Task', 'Cancel'];
+    let DESTRUCTIVE_INDEX = 3;
+    let CANCEL_INDEX = 2;
+    ActionSheet.showActionSheetWithOptions(
+      {
+        options: options,
+        cancelButtonIndex: CANCEL_INDEX,
+        destructiveButtonIndex: DESTRUCTIVE_INDEX,
+        tintColor: '#ff0b0b',
+      },
+      buttonIndex => {
+        if (buttonIndex === 1) {
+          handleDelete(task?.id);
+        }
+        if (buttonIndex === 0) {
+          handleCompleted(task?.id);
+        }
+        console.log('button clicked :', buttonIndex);
+      },
+    );
+  };
   const navigateToDetail = (task: Task) => {
     send({type: 'SHOW_EDITOR', data: {...task}});
   };
@@ -41,13 +70,19 @@ export const TasksList = () => {
   };
 
   return (
-    <FlatList
-      data={tasks}
-      keyExtractor={item => item.id}
-      renderItem={({item}) => (
-        <TaskView onPressCard={() => navigateToDetail(item)} task={item} />
-      )}
-      ListEmptyComponent={isLoading ? renderLoadState() : renderEmptyState()}
-    />
+    <>
+      <FlatList
+        data={tasks}
+        keyExtractor={item => item.id}
+        renderItem={({item}) => (
+          <TaskView
+            onPressCard={() => navigateToDetail(item)}
+            onPressOptions={() => showAlert(item)}
+            task={item}
+          />
+        )}
+        ListEmptyComponent={isLoading ? renderLoadState() : renderEmptyState()}
+      />
+    </>
   );
 };

@@ -1,18 +1,39 @@
 import React from 'react';
 import {Task} from '../models/Task';
 import {View, Text, StyleSheet, TouchableOpacity} from 'react-native';
+import {MenuIcon} from '../assets/icons/menu';
+import {CheckIcon} from '../assets/icons/check';
 
 interface ITaskViewProps {
   task: Task;
   onPressCard?: () => void;
+  onPressOptions?: () => void;
 }
-export const TaskView = ({task, onPressCard}: ITaskViewProps) => (
-  <TouchableOpacity style={styles.container} onPress={onPressCard}>
+
+export const TaskView = ({
+  task,
+  onPressCard,
+  onPressOptions,
+}: ITaskViewProps) => (
+  <TouchableOpacity
+    activeOpacity={1}
+    style={styles.container}
+    onPress={onPressCard}>
     <View style={styles.mainSection}>
       <Text style={styles.title} ellipsizeMode="tail" numberOfLines={2}>
         {task?.title}
       </Text>
-      <Text style={styles.check}>{task?.completed ? '✅' : '▢'}</Text>
+      <>
+        {!task?.completed && (
+          <TouchableOpacity style={styles.ctnButton} onPress={onPressOptions}>
+            <MenuIcon width={20} height={20} fill={'gray'} />
+          </TouchableOpacity>
+        )}
+      </>
+      <>
+        {task?.completed && <CheckIcon width={20} height={20} fill={'green'} />}
+      </>
+      {/*<Text style={styles.check}>{task?.completed ? '✅' : '▢'}</Text>*/}
     </View>
     <Text>{task?.description}</Text>
   </TouchableOpacity>
@@ -46,5 +67,9 @@ const styles = StyleSheet.create({
     minHeight: 20,
     width: '8%',
     textAlign: 'center',
+  },
+  ctnButton: {
+    width: 30,
+    height: 20,
   },
 });

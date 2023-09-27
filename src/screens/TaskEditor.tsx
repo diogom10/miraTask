@@ -38,10 +38,6 @@ export const TaskEditor = ({navigation}: {navigation: any}) => {
 
   const handleCancel = () => send({type: 'CANCEL'});
 
-  const handleDelete = () => {
-    send({type: 'DELETE', taskID: currentTask?.id});
-    navigation.goBack();
-  };
 
   return (
     <View style={styles.container}>
@@ -61,7 +57,6 @@ export const TaskEditor = ({navigation}: {navigation: any}) => {
       <View>
         <Button color="blue" title="Save" onPress={handleSave} />
         <Button title="Cancel" onPress={handleCancel} />
-        <Button color="red" title="Delete" onPress={handleDelete} />
       </View>
     </View>
   );

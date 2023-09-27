@@ -17,7 +17,8 @@ type GlobalEvents =
   | {type: 'SAVE'; taskID?: string}
   | {type: 'CANCEL'}
   | {type: 'EDIT'; data: Partial<Task>}
-  | {type: 'DELETE'; taskID?: string};
+  | {type: 'DELETE'; taskID?: string}
+  | {type: 'UPDATE'; taskID?: string};
 
 const actions: MachineOptions<GlobalContext, GlobalEvents>['actions'] = {
   openTaskEditor: (ctx, e) => {
@@ -70,10 +71,20 @@ const actions: MachineOptions<GlobalContext, GlobalEvents>['actions'] = {
       return {};
     }
     const tasks = [...ctx.currentTasks];
-    console.log('ctx>>>>',ctx)
-    console.log('e>>>>',e)
     return {
       currentTasks: tasks?.filter(a => a?.id !== e?.taskID) as [Task],
+      currentTask: undefined,
+    };
+  }),
+  updateTask: assign((ctx, e) => {
+    if (e.type !== 'UPDATE') {
+      return {};
+    }
+    let task = ctx.currentTasks?.find(a => a?.id === e?.taskID) as Task;
+    task.completed = !task?.completed;
+    return {
+      currentTasks: ctx.currentTasks?.filter(a => a?.id !== task?.id) as [Task],
+      completedTasks: [task, ...ctx.completedTasks],
       currentTask: undefined,
     };
   }),
@@ -94,6 +105,14 @@ export const globalController = createMachine(
             target: 'editing',
             actions: 'openTaskEditor',
           },
+          DELETE: {
+            target: 'idle',
+            actions: 'deleteTask',
+          },
+          UPDATE: {
+            target: 'idle',
+            actions: 'updateTask',
+          },
         },
       },
       editing: {
@@ -108,10 +127,6 @@ export const globalController = createMachine(
           CANCEL: {
             target: 'idle',
             actions: 'dismissTaskEditor',
-          },
-          DELETE: {
-            target: 'idle',
-            actions: 'deleteTask',
           },
         },
       },
