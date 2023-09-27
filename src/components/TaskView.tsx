@@ -20,18 +20,21 @@ export const TaskView = ({task, onPressCard}: ITaskViewProps) => (
 
 const styles = StyleSheet.create({
   container: {
-    borderColor: 'black',
-    borderRadius: 3,
+    borderColor: '#dedede',
+    borderRadius: 20,
     borderWidth: 1,
     padding: 4,
     margin: 2,
-    backgroundColor: 'white',
+    paddingHorizontal: 10,
+    paddingVertical: 8,
+    backgroundColor: '#fbfbfb',
+    marginBottom: 10,
   },
   mainSection: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'flex-start',
-    height: 40,
+    minHeight: 20,
   },
   title: {
     fontSize: 16,
