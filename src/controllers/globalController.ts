@@ -2,6 +2,7 @@ import {InterpreterFrom, MachineOptions, assign, createMachine} from 'xstate';
 import {NavigationProp} from '@react-navigation/native';
 import {Task} from '../models/Task';
 import {RootStackParamList} from '../navigation/Navigation';
+import {showToastMessage} from '../helper';
 
 export type GlobalService = InterpreterFrom<typeof globalController>;
 
@@ -10,6 +11,7 @@ type GlobalContext = {
   completedTasks: [Task];
   currentTask?: Task;
   navigationController: NavigationProp<RootStackParamList>;
+  successForm: boolean;
 };
 
 type GlobalEvents =
@@ -18,7 +20,8 @@ type GlobalEvents =
   | {type: 'CANCEL'}
   | {type: 'EDIT'; data: Partial<Task>}
   | {type: 'DELETE'; taskID?: string}
-  | {type: 'UPDATE'; taskID?: string};
+  | {type: 'UPDATE'; taskID?: string}
+  | {type: 'UPDATE_FORM'; data: boolean};
 
 const actions: MachineOptions<GlobalContext, GlobalEvents>['actions'] = {
   openTaskEditor: (ctx, e) => {
@@ -42,6 +45,10 @@ const actions: MachineOptions<GlobalContext, GlobalEvents>['actions'] = {
     if (e.type !== 'SAVE') {
       return {};
     }
+    console.log('ctx>>SAVE', ctx);
+    if (!ctx?.currentTask?.title) {
+      return {};
+    }
     if (!e.taskID && ctx.currentTask) {
       const newTask: Task = {
         id: (Math.random() * ctx.currentTask.title.length * 100).toString(),
@@ -49,10 +56,12 @@ const actions: MachineOptions<GlobalContext, GlobalEvents>['actions'] = {
         description: ctx.currentTask.description,
         completed: false,
       };
-      const updatedTasks = [...ctx.currentTasks, newTask];
+      const updatedTasks = [newTask, ...ctx.currentTasks];
+
       return {
         currentTasks: updatedTasks as [Task],
         currentTask: undefined,
+        successForm: true,
       };
     }
     let tasks = ctx.currentTasks;
@@ -62,6 +71,7 @@ const actions: MachineOptions<GlobalContext, GlobalEvents>['actions'] = {
     return {
       currentTasks: tasks as [Task],
       currentTask: undefined,
+      successForm: true,
     };
   }),
   dismissTaskEditor: (ctx, _) =>
@@ -86,6 +96,14 @@ const actions: MachineOptions<GlobalContext, GlobalEvents>['actions'] = {
       currentTasks: ctx.currentTasks?.filter(a => a?.id !== task?.id) as [Task],
       completedTasks: [task, ...ctx.completedTasks],
       currentTask: undefined,
+    };
+  }),
+  updateForm: assign((ctx, e) => {
+    if (e.type !== 'UPDATE_FORM') {
+      return {};
+    }
+    return {
+      successForm: e?.data,
     };
   }),
 };
@@ -127,6 +145,10 @@ export const globalController = createMachine(
           CANCEL: {
             target: 'idle',
             actions: 'dismissTaskEditor',
+          },
+          UPDATE_FORM: {
+            target: 'idle',
+            actions: 'updateForm',
           },
         },
       },

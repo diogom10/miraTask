@@ -18,6 +18,7 @@ const GlobalStateProvider = (props: PropsWithChildren) => {
         navigationController: navigation,
         currentTasks: mockData?.filter(a => !a?.completed) as [Task],
         completedTasks: mockData?.filter(a => a?.completed) as [Task],
+        successForm: false,
       })}>
       {props.children}
     </GlobalStateContext.Provider>
