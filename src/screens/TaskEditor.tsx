@@ -8,7 +8,7 @@ interface ITaskViewProps {
   task?: Task;
 }
 
-export const TaskEditor = ({navigation}) => {
+export const TaskEditor = ({navigation}: {navigation: any}) => {
   const {send} = useGlobalActorRef();
   const currentTask = useGlobalSelector(state => state.context.currentTask);
 
