@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {FlatList} from 'react-native';
+import {FlatList, StyleSheet, Text, View} from 'react-native';
 import {useGlobalActorRef, useGlobalSelector} from '../contexts/GlobalContext';
 import {TaskView} from '../components/TaskView/TaskView';
 import {Task} from '../models/Task';
@@ -68,10 +68,19 @@ export const TasksList = () => {
     );
   };
 
+  const renderHeaderList = () => {
+    return (
+      <View>
+        <Text style={styles.title}>IN PROGRESS</Text>
+      </View>
+    );
+  };
+
   return (
     <>
       <FlatList
         data={tasks}
+        ListHeaderComponent={isLoading ? null : renderHeaderList()}
         keyExtractor={item => item.id}
         renderItem={({item}) => (
           <TaskView
@@ -85,3 +94,13 @@ export const TasksList = () => {
     </>
   );
 };
+
+const styles = StyleSheet.create({
+  title: {
+    fontSize: 30,
+    color: '#989aae',
+    fontWeight: '700',
+    textAlign: 'center',
+    marginBottom: 30,
+  },
+});

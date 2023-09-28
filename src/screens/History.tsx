@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {FlatList} from 'react-native';
+import {FlatList, StyleSheet, Text, View} from 'react-native';
 import {useGlobalSelector} from '../contexts/GlobalContext';
 import {TaskView} from '../components/TaskView/TaskView';
 import {Task} from '../models/Task';
@@ -29,8 +29,17 @@ export const History = () => {
     return <TaskEmpty title={'You don`t have any completed task'} />;
   };
 
+  const renderHeaderList = () => {
+    return (
+      <View>
+        <Text style={styles.title}>COMPLETED</Text>
+      </View>
+    );
+  };
+
   return (
     <FlatList
+      ListHeaderComponent={isLoading ? null : renderHeaderList()}
       data={tasks}
       keyExtractor={item => item.id}
       renderItem={({item}) => <TaskView task={item} />}
@@ -38,3 +47,14 @@ export const History = () => {
     />
   );
 };
+
+
+const styles = StyleSheet.create({
+  title: {
+    fontSize: 30,
+    color: '#989aae',
+    fontWeight: '700',
+    textAlign: 'center',
+    marginBottom: 30,
+  },
+});

@@ -15,7 +15,7 @@ export const TaskLoad = ({
   testID = 'TaskLoad',
 }: ITaskLoadrops) => {
   const quantityItems = new Array(quantity)?.fill(true);
-  quantityItems.map((_, index) => {
+  return quantityItems.map((_, index) => {
     return (
       <View style={styles?.container} testID={`${testID}_container_${index}`}>
         <ShimmerPlaceholder style={styles.shimmer} />
