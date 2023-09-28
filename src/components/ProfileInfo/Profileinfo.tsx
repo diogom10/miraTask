@@ -2,6 +2,8 @@ import React from 'react';
 import {StyleSheet, Text, View, Image} from 'react-native';
 import {Warning} from '../../assets/icons/warning';
 import {Profile} from '../../models/Profile';
+import {PhoneIcon} from "../../assets/icons/phone";
+import {EmailIcon} from "../../assets/icons/email";
 
 export interface IProfileInfoProps {
   profile: Profile;
@@ -40,13 +42,13 @@ export const ProfileInfo = ({
         </View>
         <View style={styles.contactInfo}>
           <View style={styles.rowInfo}>
-            <Warning width={16} height={16} fill={'#989aae'} />
+            <PhoneIcon width={16} height={16} fill={'#989aae'} />
             <Text style={styles.infoText} testID={`${testID}_phone`}>
               {profile?.phone}
             </Text>
           </View>
           <View style={styles.rowInfo}>
-            <Warning width={16} height={16} fill={'#989aae'} />
+            <EmailIcon width={16} height={16} fill={'#989aae'} />
             <Text style={styles.infoText} testID={`${testID}_email`}>
               {profile?.email}
             </Text>
