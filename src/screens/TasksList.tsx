@@ -50,7 +50,6 @@ export const TasksList = () => {
         if (buttonIndex === 0) {
           handleCompleted(task?.id);
         }
-        console.log('button clicked :', buttonIndex);
       },
     );
   };

@@ -2,7 +2,6 @@ import {InterpreterFrom, MachineOptions, assign, createMachine} from 'xstate';
 import {NavigationProp} from '@react-navigation/native';
 import {Task} from '../models/Task';
 import {RootStackParamList} from '../navigation/Navigation';
-import {showToastMessage} from '../helper';
 
 export type GlobalService = InterpreterFrom<typeof globalController>;
 
@@ -21,7 +20,9 @@ type GlobalEvents =
   | {type: 'EDIT'; data: Partial<Task>}
   | {type: 'DELETE'; taskID?: string}
   | {type: 'UPDATE'; taskID?: string}
-  | {type: 'UPDATE_FORM'; data: boolean};
+  | {type: 'UPDATE_FORM'; data: boolean}
+  | {type: 'DELETE_ALL'}
+  | {type: 'COMPLETE_ALL'};
 
 const actions: MachineOptions<GlobalContext, GlobalEvents>['actions'] = {
   openTaskEditor: (ctx, e) => {
@@ -45,7 +46,6 @@ const actions: MachineOptions<GlobalContext, GlobalEvents>['actions'] = {
     if (e.type !== 'SAVE') {
       return {};
     }
-    console.log('ctx>>SAVE', ctx);
     if (!ctx?.currentTask?.title) {
       return {};
     }
@@ -86,7 +86,7 @@ const actions: MachineOptions<GlobalContext, GlobalEvents>['actions'] = {
       currentTask: undefined,
     };
   }),
-  updateTask: assign((ctx, e) => {
+  updateAllTasks: assign((ctx, e) => {
     if (e.type !== 'UPDATE') {
       return {};
     }
@@ -104,6 +104,30 @@ const actions: MachineOptions<GlobalContext, GlobalEvents>['actions'] = {
     }
     return {
       successForm: e?.data,
+    };
+  }),
+
+  deleteAll: assign((ctx, e) => {
+    if (e.type !== 'DELETE_ALL') {
+      return {};
+    }
+    return {
+      currentTasks: [],
+    };
+  }),
+
+  completeAllTasks: assign((ctx, e) => {
+    if (e.type !== 'COMPLETE_ALL') {
+      return {};
+    }
+    const tasks = ctx.currentTasks?.map(a => {
+      a.completed = true;
+      return a;
+    });
+    return {
+      currentTasks: [],
+      completedTasks: [...tasks, ...ctx.completedTasks],
+      currentTask: undefined,
     };
   }),
 };
@@ -130,6 +154,14 @@ export const globalController = createMachine(
           UPDATE: {
             target: 'idle',
             actions: 'updateTask',
+          },
+          DELETE_ALL: {
+            target: 'idle',
+            actions: 'deleteAll',
+          },
+          COMPLETE_ALL: {
+            target: 'idle',
+            actions: 'completeAllTasks',
           },
         },
       },
