@@ -3,17 +3,21 @@ import {StyleSheet, View} from 'react-native';
 import {createShimmerPlaceholder} from 'react-native-shimmer-placeholder';
 import LinearGradient from 'react-native-linear-gradient';
 
-interface ITaskLoadrops {
+export interface ITaskLoadrops {
   quantity: number;
+  testID?: string;
 }
 
 const ShimmerPlaceholder = createShimmerPlaceholder(LinearGradient);
 
-export const TaskLoad = ({quantity = 10}: ITaskLoadrops) => {
+export const TaskLoad = ({
+  quantity = 10,
+  testID = 'TaskLoad',
+}: ITaskLoadrops) => {
   const quantityItems = new Array(quantity)?.fill(true);
-  return quantityItems.map(_ => {
+  quantityItems.map((_, index) => {
     return (
-      <View style={styles?.container}>
+      <View style={styles?.container} testID={`${testID}_container_${index}`}>
         <ShimmerPlaceholder style={styles.shimmer} />
       </View>
     );

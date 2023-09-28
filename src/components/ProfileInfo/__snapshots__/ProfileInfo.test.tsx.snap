@@ -1,0 +1,322 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TaskView Component snapshot 1`] = `
+[
+  <View
+    style={
+      {
+        "borderRadius": 20,
+        "margin": 2,
+        "minHeight": 70,
+        "padding": 20,
+      }
+    }
+  >
+    <View
+      style={
+        {
+          "alignItems": "center",
+          "flexDirection": "row",
+        }
+      }
+    >
+      <Image
+        source={
+          {
+            "uri": "https://randomuser.me/api/portraits/men/42.jpg",
+          }
+        }
+        style={
+          {
+            "borderRadius": 50,
+            "height": 80,
+            "overflow": "hidden",
+            "width": 80,
+          }
+        }
+        testID="ProfileInfo_profile_image"
+      />
+      <View
+        style={
+          {
+            "flexDirection": "column",
+            "marginLeft": 40,
+          }
+        }
+      >
+        <Text
+          style={
+            {
+              "color": "#0b1352",
+              "fontSize": 16,
+              "fontWeight": "bold",
+            }
+          }
+          testID="ProfileInfo_name"
+        >
+          Diogo Moura
+        </Text>
+        <Text
+          style={
+            {
+              "color": "#989aae",
+            }
+          }
+          testID="ProfileInfo_profession"
+        >
+          React Native Developer
+        </Text>
+      </View>
+    </View>
+    <View
+      style={
+        {
+          "marginTop": 20,
+        }
+      }
+    >
+      <View
+        style={
+          {
+            "alignItems": "center",
+            "flexDirection": "row",
+            "marginBottom": 10,
+          }
+        }
+      >
+        <RNSVGSvgView
+          align="xMidYMid"
+          bbHeight="16"
+          bbWidth="16"
+          fill="#989aae"
+          focusable={false}
+          height={16}
+          meetOrSlice={0}
+          minX={0}
+          minY={0}
+          style={
+            [
+              {
+                "backgroundColor": "transparent",
+                "borderWidth": 0,
+              },
+              {
+                "flex": 0,
+                "height": 16,
+                "width": 16,
+              },
+            ]
+          }
+          vbHeight={24}
+          vbWidth={24}
+          width={16}
+        >
+          <RNSVGGroup
+            fill={
+              {
+                "payload": 4288191150,
+                "type": 0,
+              }
+            }
+            propList={
+              [
+                "fill",
+              ]
+            }
+          >
+            <RNSVGPath
+              d="M12 2c5.514 0 10 4.486 10 10s-4.486 10-10 10-10-4.486-10-10 4.486-10 10-10zm0-2c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm-1 6h2v8h-2v-8zm1 12.25c-.69 0-1.25-.56-1.25-1.25s.56-1.25 1.25-1.25 1.25.56 1.25 1.25-.56 1.25-1.25 1.25z"
+              fill={
+                {
+                  "payload": 4288191150,
+                  "type": 0,
+                }
+              }
+              propList={
+                [
+                  "fill",
+                ]
+              }
+            />
+          </RNSVGGroup>
+        </RNSVGSvgView>
+        <Text
+          style={
+            {
+              "color": "#989aae",
+              "marginLeft": 10,
+            }
+          }
+          testID="ProfileInfo_phone"
+        >
+          (+55) 11 983593722
+        </Text>
+      </View>
+      <View
+        style={
+          {
+            "alignItems": "center",
+            "flexDirection": "row",
+            "marginBottom": 10,
+          }
+        }
+      >
+        <RNSVGSvgView
+          align="xMidYMid"
+          bbHeight="16"
+          bbWidth="16"
+          fill="#989aae"
+          focusable={false}
+          height={16}
+          meetOrSlice={0}
+          minX={0}
+          minY={0}
+          style={
+            [
+              {
+                "backgroundColor": "transparent",
+                "borderWidth": 0,
+              },
+              {
+                "flex": 0,
+                "height": 16,
+                "width": 16,
+              },
+            ]
+          }
+          vbHeight={24}
+          vbWidth={24}
+          width={16}
+        >
+          <RNSVGGroup
+            fill={
+              {
+                "payload": 4288191150,
+                "type": 0,
+              }
+            }
+            propList={
+              [
+                "fill",
+              ]
+            }
+          >
+            <RNSVGPath
+              d="M12 2c5.514 0 10 4.486 10 10s-4.486 10-10 10-10-4.486-10-10 4.486-10 10-10zm0-2c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm-1 6h2v8h-2v-8zm1 12.25c-.69 0-1.25-.56-1.25-1.25s.56-1.25 1.25-1.25 1.25.56 1.25 1.25-.56 1.25-1.25 1.25z"
+              fill={
+                {
+                  "payload": 4288191150,
+                  "type": 0,
+                }
+              }
+              propList={
+                [
+                  "fill",
+                ]
+              }
+            />
+          </RNSVGGroup>
+        </RNSVGSvgView>
+        <Text
+          style={
+            {
+              "color": "#989aae",
+              "marginLeft": 10,
+            }
+          }
+          testID="ProfileInfo_email"
+        >
+          diogomoura10@gmail.com
+        </Text>
+      </View>
+    </View>
+  </View>,
+  <View
+    style={
+      {
+        "borderBottomWidth": 3,
+        "borderColor": "#ebecee",
+        "borderLeftWidthWidth": 0,
+        "borderRightWidth": 0,
+        "borderTopWidth": 3,
+        "flexDirection": "row",
+        "justifyContent": "space-between",
+        "minHeight": 90,
+        "width": "100%",
+      }
+    }
+  >
+    <View
+      style={
+        {
+          "alignItems": "center",
+          "justifyContent": "center",
+          "width": "49%",
+        }
+      }
+    >
+      <Text
+        style={
+          {
+            "color": "#0b1352",
+            "fontSize": 16,
+            "fontWeight": "bold",
+          }
+        }
+      >
+        Current Tasks
+      </Text>
+      <Text
+        style={
+          {
+            "color": "#989aae",
+          }
+        }
+        testID="ProfileInfo_current_tasks"
+      >
+        10
+      </Text>
+    </View>
+    <View
+      style={
+        {
+          "borderColor": "#ebecee",
+          "borderWidth": 2,
+          "height": "100%",
+        }
+      }
+    />
+    <View
+      style={
+        {
+          "alignItems": "center",
+          "justifyContent": "center",
+          "width": "49%",
+        }
+      }
+    >
+      <Text
+        style={
+          {
+            "color": "#0b1352",
+            "fontSize": 16,
+            "fontWeight": "bold",
+          }
+        }
+      >
+        Completed Tasks
+      </Text>
+      <Text
+        style={
+          {
+            "color": "#989aae",
+          }
+        }
+        testID="ProfileInfo_completed_tasks"
+      >
+        3
+      </Text>
+    </View>
+  </View>,
+]
+`;

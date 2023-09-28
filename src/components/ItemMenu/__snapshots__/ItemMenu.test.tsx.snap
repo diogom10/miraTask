@@ -1,0 +1,113 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ItemMenu Component snapshot 1`] = `
+<View
+  accessibilityState={
+    {
+      "busy": undefined,
+      "checked": undefined,
+      "disabled": undefined,
+      "expanded": undefined,
+      "selected": undefined,
+    }
+  }
+  accessibilityValue={
+    {
+      "max": undefined,
+      "min": undefined,
+      "now": undefined,
+      "text": undefined,
+    }
+  }
+  accessible={true}
+  collapsable={false}
+  focusable={true}
+  onClick={[Function]}
+  onResponderGrant={[Function]}
+  onResponderMove={[Function]}
+  onResponderRelease={[Function]}
+  onResponderTerminate={[Function]}
+  onResponderTerminationRequest={[Function]}
+  onStartShouldSetResponder={[Function]}
+  style={
+    {
+      "alignItems": "center",
+      "borderBottomColor": "#bdbfd3",
+      "borderBottomWidth": 1,
+      "flexDirection": "row",
+      "marginBottom": 20,
+      "marginHorizontal": 20,
+      "minHeight": 20,
+      "opacity": 1,
+      "paddingBottom": 5,
+    }
+  }
+  testID="ItemMenu_btn_action"
+>
+  <RNSVGSvgView
+    align="xMidYMid"
+    bbHeight="20"
+    bbWidth="20"
+    fill="#4270d4"
+    focusable={false}
+    height={20}
+    meetOrSlice={0}
+    minX={0}
+    minY={0}
+    style={
+      [
+        {
+          "backgroundColor": "transparent",
+          "borderWidth": 0,
+        },
+        {
+          "flex": 0,
+          "height": 20,
+          "width": 20,
+        },
+      ]
+    }
+    testID="ItemMenu_icon"
+    vbHeight={512}
+    vbWidth={512}
+    width={20}
+  >
+    <RNSVGGroup
+      fill={
+        {
+          "payload": 4282544340,
+          "type": 0,
+        }
+      }
+      propList={
+        [
+          "fill",
+        ]
+      }
+    >
+      <RNSVGPath
+        d="M256 48C141.31 48 48 141.31 48 256s93.31 208 208 208 208-93.31 208-208S370.69 48 256 48zm-38 312.38-80.6-89.57 23.79-21.41 56 62.22L350 153.46 374.54 174z"
+        fill={
+          {
+            "payload": 4278190080,
+            "type": 0,
+          }
+        }
+      />
+    </RNSVGGroup>
+  </RNSVGSvgView>
+  <Text
+    style={
+      {
+        "color": "#6b7093",
+        "fontSize": 15,
+        "fontWeight": "400",
+        "marginLeft": 20,
+      }
+    }
+    testID="ItemMenu_title"
+  >
+    Mark All tasks as Completed
+  </Text>
+</View>
+`;

@@ -1,24 +1,27 @@
 import React from 'react';
 import {StyleSheet, Text, View, Image} from 'react-native';
-import {Warning} from '../assets/icons/warning';
-import {Profile} from '../models/Profile';
+import {Warning} from '../../assets/icons/warning';
+import {Profile} from '../../models/Profile';
 
-interface IProfileInfoProps {
+export interface IProfileInfoProps {
   profile: Profile;
   currentTasks: number;
   completedTasks: number;
+  testID?: string;
 }
 
 export const ProfileInfo = ({
   profile,
   currentTasks = 0,
   completedTasks = 0,
+  testID = 'ProfileInfo',
 }: IProfileInfoProps) => {
   return (
     <>
       <View style={styles.containerHeader}>
         <View style={styles.userInfo}>
           <Image
+            testID={`${testID}_profile_image`}
             style={styles.image}
             source={{
               uri:
@@ -27,32 +30,40 @@ export const ProfileInfo = ({
             }}
           />
           <View style={styles.controlName}>
-            {/*<Text style={styles.title}>Diogo Moura</Text>*/}
-            {/*<Text style={styles.subtitle}>React Native Developer</Text>  */}
-            <Text style={styles.title}>{profile?.name}</Text>
-            <Text style={styles.subtitle}>{profile?.profession}</Text>
+            <Text style={styles.title} testID={`${testID}_name`}>
+              {profile?.name}
+            </Text>
+            <Text style={styles.subtitle} testID={`${testID}_profession`}>
+              {profile?.profession}
+            </Text>
           </View>
         </View>
         <View style={styles.contactInfo}>
           <View style={styles.rowInfo}>
             <Warning width={16} height={16} fill={'#989aae'} />
-            <Text style={styles.infoText}>{profile?.phone}</Text>
+            <Text style={styles.infoText} testID={`${testID}_phone`}>
+              {profile?.phone}
+            </Text>
           </View>
           <View style={styles.rowInfo}>
             <Warning width={16} height={16} fill={'#989aae'} />
-            <Text style={styles.infoText}>{profile?.email}</Text>
+            <Text style={styles.infoText} testID={`${testID}_email`}>
+              {profile?.email}
+            </Text>
           </View>
         </View>
       </View>
       <View style={styles.containerTaskInfo}>
         <View style={styles.taskInfo}>
           <Text style={styles.title}>Current Tasks</Text>
-          <Text style={styles.subtitle}>{currentTasks}</Text>
+          <Text style={styles.subtitle} testID={`${testID}_current_tasks`}>
+            {currentTasks}
+          </Text>
         </View>
         <View style={styles.taskInfoSeparatorCenter} />
         <View style={styles.taskInfo}>
           <Text style={styles.title}>Completed Tasks</Text>
-          <Text style={styles.subtitle}>{completedTasks}</Text>
+          <Text style={styles.subtitle} testID={`${testID}_completed_tasks`}>{completedTasks}</Text>
         </View>
       </View>
     </>

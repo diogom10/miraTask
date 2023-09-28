@@ -1,0 +1,147 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TaskView Component snapshot 1`] = `
+<View
+  style={
+    {
+      "alignItems": "center",
+      "backgroundColor": "#fbfbfb",
+      "borderColor": "#fff",
+      "borderRadius": 20,
+      "borderWidth": 1,
+      "margin": 2,
+      "marginBottom": 10,
+      "marginTop": "50%",
+      "minHeight": 200,
+      "padding": 4,
+      "paddingHorizontal": 15,
+      "paddingVertical": 15,
+    }
+  }
+>
+  <RNSVGSvgView
+    align="xMidYMid"
+    bbHeight="80"
+    bbWidth="80"
+    fill="#656053"
+    focusable={false}
+    height={80}
+    meetOrSlice={0}
+    minX={0}
+    minY={0}
+    style={
+      [
+        {
+          "backgroundColor": "transparent",
+          "borderWidth": 0,
+        },
+        {
+          "marginBottom": 20,
+        },
+        {
+          "flex": 0,
+          "height": 80,
+          "width": 80,
+        },
+      ]
+    }
+    vbHeight={24}
+    vbWidth={24}
+    width={80}
+  >
+    <RNSVGGroup
+      fill={
+        {
+          "payload": 4284833875,
+          "type": 0,
+        }
+      }
+      propList={
+        [
+          "fill",
+        ]
+      }
+    >
+      <RNSVGPath
+        d="M12 2c5.514 0 10 4.486 10 10s-4.486 10-10 10-10-4.486-10-10 4.486-10 10-10zm0-2c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm-1 6h2v8h-2v-8zm1 12.25c-.69 0-1.25-.56-1.25-1.25s.56-1.25 1.25-1.25 1.25.56 1.25 1.25-.56 1.25-1.25 1.25z"
+        fill={
+          {
+            "payload": 4284833875,
+            "type": 0,
+          }
+        }
+        propList={
+          [
+            "fill",
+          ]
+        }
+      />
+    </RNSVGGroup>
+  </RNSVGSvgView>
+  <Text
+    style={
+      {
+        "fontSize": 22,
+        "fontWeight": "bold",
+        "textAlign": "center",
+        "width": "92%",
+      }
+    }
+    testID="TaskEmpty_title"
+  >
+    You don\`t have any task
+  </Text>
+  <View
+    accessibilityState={
+      {
+        "busy": undefined,
+        "checked": undefined,
+        "disabled": undefined,
+        "expanded": undefined,
+        "selected": undefined,
+      }
+    }
+    accessibilityValue={
+      {
+        "max": undefined,
+        "min": undefined,
+        "now": undefined,
+        "text": undefined,
+      }
+    }
+    accessible={true}
+    collapsable={false}
+    focusable={true}
+    onClick={[Function]}
+    onResponderGrant={[Function]}
+    onResponderMove={[Function]}
+    onResponderRelease={[Function]}
+    onResponderTerminate={[Function]}
+    onResponderTerminationRequest={[Function]}
+    onStartShouldSetResponder={[Function]}
+    style={
+      {
+        "opacity": 1,
+      }
+    }
+    testID="TaskEmpty_btn_action"
+  >
+    <Text
+      style={
+        {
+          "color": "#508ce8",
+          "fontSize": 14,
+          "fontWeight": "bold",
+          "textAlign": "center",
+          "textDecorationColor": "#508ce8",
+          "textDecorationLine": "underline",
+          "width": "92%",
+        }
+      }
+      testID="TaskEmpty_action_title"
+    >
+      Try add a new task
+    </Text>
+  </View>
+</View>
+`;

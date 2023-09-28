@@ -1,0 +1,192 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TaskView Component snapshot 1`] = `
+<View
+  accessibilityState={
+    {
+      "busy": undefined,
+      "checked": undefined,
+      "disabled": undefined,
+      "expanded": undefined,
+      "selected": undefined,
+    }
+  }
+  accessibilityValue={
+    {
+      "max": undefined,
+      "min": undefined,
+      "now": undefined,
+      "text": undefined,
+    }
+  }
+  accessible={true}
+  collapsable={false}
+  focusable={true}
+  onClick={[Function]}
+  onResponderGrant={[Function]}
+  onResponderMove={[Function]}
+  onResponderRelease={[Function]}
+  onResponderTerminate={[Function]}
+  onResponderTerminationRequest={[Function]}
+  onStartShouldSetResponder={[Function]}
+  style={
+    {
+      "backgroundColor": "#fbfbfb",
+      "borderColor": "#dedede",
+      "borderRadius": 20,
+      "borderWidth": 1,
+      "margin": 2,
+      "marginBottom": 10,
+      "opacity": 1,
+      "padding": 4,
+      "paddingHorizontal": 10,
+      "paddingVertical": 8,
+    }
+  }
+  testID="TaskView_btn_card"
+>
+  <View
+    style={
+      {
+        "alignItems": "flex-start",
+        "flexDirection": "row",
+        "justifyContent": "space-between",
+        "minHeight": 20,
+      }
+    }
+  >
+    <Text
+      ellipsizeMode="tail"
+      numberOfLines={2}
+      style={
+        {
+          "fontSize": 16,
+          "fontWeight": "bold",
+          "width": "92%",
+        }
+      }
+      testID="TaskView_title"
+    >
+      pede justo eu massa donec dapibus duis
+    </Text>
+    <View
+      accessibilityState={
+        {
+          "busy": undefined,
+          "checked": undefined,
+          "disabled": undefined,
+          "expanded": undefined,
+          "selected": undefined,
+        }
+      }
+      accessibilityValue={
+        {
+          "max": undefined,
+          "min": undefined,
+          "now": undefined,
+          "text": undefined,
+        }
+      }
+      accessible={true}
+      collapsable={false}
+      focusable={true}
+      onClick={[Function]}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+      style={
+        {
+          "height": 20,
+          "opacity": 1,
+          "width": 30,
+        }
+      }
+      testID="TaskView_btn_options"
+    >
+      <RNSVGSvgView
+        align="xMidYMid"
+        bbHeight="20"
+        bbWidth="20"
+        fill="gray"
+        focusable={false}
+        height={20}
+        meetOrSlice={0}
+        minX={0}
+        minY={0}
+        style={
+          [
+            {
+              "backgroundColor": "transparent",
+              "borderWidth": 0,
+            },
+            {
+              "flex": 0,
+              "height": 20,
+              "width": 20,
+            },
+          ]
+        }
+        vbHeight={512}
+        vbWidth={512}
+        width={20}
+      >
+        <RNSVGGroup
+          fill={
+            {
+              "payload": 4286611584,
+              "type": 0,
+            }
+          }
+          propList={
+            [
+              "fill",
+            ]
+          }
+        >
+          <RNSVGCircle
+            cx="256"
+            cy="256"
+            fill={
+              {
+                "payload": 4278190080,
+                "type": 0,
+              }
+            }
+            r="48"
+          />
+          <RNSVGCircle
+            cx="256"
+            cy="416"
+            fill={
+              {
+                "payload": 4278190080,
+                "type": 0,
+              }
+            }
+            r="48"
+          />
+          <RNSVGCircle
+            cx="256"
+            cy="96"
+            fill={
+              {
+                "payload": 4278190080,
+                "type": 0,
+              }
+            }
+            r="48"
+          />
+        </RNSVGGroup>
+      </RNSVGSvgView>
+    </View>
+  </View>
+  <Text
+    testID="TaskView_description"
+  >
+    vel enim sit amet nunc viverra dapibus nulla suscipit ligula in lacus curabitur at ipsum ac tellus semper interdum mauris ullamcorper purus sit amet nulla quisque arcu libero rutrum
+  </Text>
+</View>
+`;

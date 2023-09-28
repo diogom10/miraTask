@@ -1,17 +1,28 @@
 import React from 'react';
 import {StyleSheet, Text, TouchableOpacity} from 'react-native';
 
-interface ItemMenuProps {
+export interface ItemMenuProps {
   icon: React.ReactElement;
   title: string;
   action?: () => void;
+  testID?: string;
 }
 
-export const ItemMenu = ({icon, title, action = () => null}: ItemMenuProps) => {
+export const ItemMenu = ({
+  icon,
+  title,
+  action = () => null,
+  testID = 'ItemMenu',
+}: ItemMenuProps) => {
   return (
-    <TouchableOpacity style={styles.container} onPress={action}>
+    <TouchableOpacity
+      testID={`${testID}_btn_action`}
+      style={styles.container}
+      onPress={action}>
       {icon}
-      <Text style={styles.text}>{title}</Text>
+      <Text testID={`${testID}_title`} style={styles.text}>
+        {title}
+      </Text>
     </TouchableOpacity>
   );
 };

@@ -1,24 +1,30 @@
 import React from 'react';
-import {Task} from '../models/Task';
+import {Task} from '../../models/Task';
 import {View, Text, StyleSheet, TouchableOpacity} from 'react-native';
-import {Warning} from '../assets/icons/warning';
+import {Warning} from '../../assets/icons/warning';
 
-interface ITaskEmptyProps {
+export interface ITaskEmptyProps {
   title: string;
   actionTitle?: string;
   action?: () => void;
+  testID?: string;
 }
 
 export const TaskEmpty = ({
   title,
   actionTitle,
   action = () => {},
+  testID = 'TaskEmpty',
 }: ITaskEmptyProps) => (
   <View style={styles.container}>
     <Warning style={styles.icon} width={80} height={80} fill={'#656053'} />
-    <Text style={styles.title}>{title}</Text>
-    <TouchableOpacity onPress={action}>
-      <Text style={styles.actionTitle}>{actionTitle}</Text>
+    <Text style={styles.title} testID={`${testID}_title`}>
+      {title}
+    </Text>
+    <TouchableOpacity onPress={action} testID={`${testID}_btn_action`}>
+      <Text style={styles.actionTitle} testID={`${testID}_action_title`}>
+        {actionTitle}
+      </Text>
     </TouchableOpacity>
   </View>
 );

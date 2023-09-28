@@ -1,41 +1,57 @@
 import React from 'react';
-import {Task} from '../models/Task';
+import {Task} from '../../models/Task';
 import {View, Text, StyleSheet, TouchableOpacity} from 'react-native';
-import {MenuIcon} from '../assets/icons/menu';
-import {CheckIcon} from '../assets/icons/check';
+import {MenuIcon} from '../../assets/icons/menu';
+import {CheckIcon} from '../../assets/icons/check';
 
-interface ITaskViewProps {
+export interface ITaskViewProps {
   task: Task;
   onPressCard?: () => void;
   onPressOptions?: () => void;
+  testID?: string;
 }
 
 export const TaskView = ({
   task,
   onPressCard,
   onPressOptions,
+  testID = 'TaskView',
 }: ITaskViewProps) => (
   <TouchableOpacity
     activeOpacity={1}
+    testID={`${testID}_btn_card`}
     style={styles.container}
     onPress={onPressCard}>
     <View style={styles.mainSection}>
-      <Text style={styles.title} ellipsizeMode="tail" numberOfLines={2}>
+      <Text
+        testID={`${testID}_title`}
+        style={styles.title}
+        ellipsizeMode="tail"
+        numberOfLines={2}>
         {task?.title}
       </Text>
       <>
         {!task?.completed && (
-          <TouchableOpacity style={styles.ctnButton} onPress={onPressOptions}>
+          <TouchableOpacity
+            testID={`${testID}_btn_options`}
+            style={styles.ctnButton}
+            onPress={onPressOptions}>
             <MenuIcon width={20} height={20} fill={'gray'} />
           </TouchableOpacity>
         )}
       </>
       <>
-        {task?.completed && <CheckIcon width={20} height={20} fill={'green'} />}
+        {task?.completed && (
+          <CheckIcon
+            testID={`${testID}_check_icon`}
+            width={20}
+            height={20}
+            fill={'green'}
+          />
+        )}
       </>
-      {/*<Text style={styles.check}>{task?.completed ? '✅' : '▢'}</Text>*/}
     </View>
-    <Text>{task?.description}</Text>
+    <Text testID={`${testID}_description`}>{task?.description}</Text>
   </TouchableOpacity>
 );
 

@@ -1,8 +1,8 @@
 import React from 'react';
 import {Alert, StyleSheet, View} from 'react-native';
 import {useGlobalActorRef, useGlobalSelector} from '../contexts/GlobalContext';
-import {ProfileInfo} from '../components/Profileinfo';
-import {ItemMenu} from '../components/ItemList';
+import {ProfileInfo} from '../components/ProfileInfo/Profileinfo';
+import {ItemMenu} from '../components/ItemMenu/ItemMenu';
 import {ShareIcon} from '../assets/icons/share';
 import {TrashIcon} from '../assets/icons/trash';
 import {CheckIcon} from '../assets/icons/check';
@@ -67,21 +67,21 @@ export const Settings = () => {
       />
       <View style={styles.containerMenu}>
         <ItemMenu
-          icon={<ShareIcon width={20} height={20} fill={'#4270d4'} />}
+          icon={<ShareIcon testID={`ItemMenu_icon`} width={20} height={20} fill={'#4270d4'} />}
           title={'Share'}
         />
         <ItemMenu
           action={() => onDeleteAllTasks()}
-          icon={<TrashIcon width={20} height={20} fill={'#4270d4'} />}
+          icon={<TrashIcon testID={`ItemMenu_icon`} width={20} height={20} fill={'#4270d4'} />}
           title={'Delete All Current Tasks'}
         />
         <ItemMenu
           action={() => onCompleteAllTasks()}
-          icon={<CheckIcon width={20} height={20} fill={'#4270d4'} />}
+          icon={<CheckIcon  testID={`ItemMenu_icon`} width={20} height={20} fill={'#4270d4'} />}
           title={'Mark All tasks as Completed'}
         />
         <ItemMenu
-          icon={<LogoutIcon width={20} height={20} fill={'#4270d4'} />}
+          icon={<LogoutIcon  testID={`ItemMenu_icon`}width={20} height={20} fill={'#4270d4'} />}
           title={'Logout'}
         />
       </View>

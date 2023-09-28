@@ -1,10 +1,10 @@
 import React, {useEffect, useState} from 'react';
 import {FlatList} from 'react-native';
 import {useGlobalSelector} from '../contexts/GlobalContext';
-import {TaskView} from '../components/TaskView';
+import {TaskView} from '../components/TaskView/TaskView';
 import {Task} from '../models/Task';
-import {TaskLoad} from '../components/TaskLoad';
-import {TaskEmpty} from '../components/TaskEmpty';
+import {TaskLoad} from '../components/TaskLoad/TaskLoad';
+import {TaskEmpty} from '../components/TaskEmpty/TaskEmpty';
 
 export const History = () => {
   const completedTasks = useGlobalSelector(
